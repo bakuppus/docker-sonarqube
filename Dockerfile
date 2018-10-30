@@ -2,7 +2,7 @@ FROM openjdk:8
 
 # Database configuration
 # Defaults to using H2
-ENV SONAR_VERSION=7.2.1 \
+ENV SONAR_VERSION=7.4 \
     SONARQUBE_HOME=/opt/sonarqube \
     SONARQUBE_JDBC_USERNAME=sonar \
     SONARQUBE_JDBC_PASSWORD=sonar \
@@ -39,8 +39,8 @@ RUN set -x \
     gpg --keyserver keyserver.pgp.com --recv-keys "$GPG_KEYS" || \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEYS" \
     && cd /opt \
-    && curl -o sonarqube.zip -fSL https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip \
-    && curl -o sonarqube.zip.asc -fSL https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip.asc \
+    && curl -o sonarqube.zip -fSL https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip \
+    && curl -o sonarqube.zip.asc -fSL https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip.asc \
     && gpg --batch --verify sonarqube.zip.asc sonarqube.zip \
     && unzip sonarqube.zip \
     && mv sonarqube-$SONAR_VERSION sonarqube \
